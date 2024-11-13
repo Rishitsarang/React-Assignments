@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load More Books Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background: #fff;
+        }
+
+        #load-more {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #load-more:disabled {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Books List</h1>
+        <div id="item-list"></div>
+        <button id="load-more">Load More</button>
+    </div>
+
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let currentPage = 0; // Start from page 0
+            const itemsPerPage = 3; // Number of items to load per click
+
+            // Function to fetch items from the JSON file
+            function fetchItems(page) {
+                $.ajax({
+                    url: 'books.json', // URL to your JSON file
+                    dataType: 'json',
+                    success: function(data) {
+                        const books = data.books; // Access the books array
+                        const start = page * itemsPerPage;
+                        const end = start + itemsPerPage;
+                        const itemsToDisplay = books.slice(start, end); // Get the current page items
+                        
+                        appendItems(itemsToDisplay);
+
+                        // Check if there are more items to load
+                        if (end >= books.length) {
+                            $('#load-more').prop('disabled', true).text('No more items to load');
+                        } else {
+                            $('#load-more').prop('disabled', false).text('Load More');
+                        }
+                    },
+                    error: function() {
+                        console.error('Failed to fetch data');
+                    }
+                });
+            }
+
+            // Function to append items to the list
+            function appendItems(items) {
+                items.forEach(item => {
+                    $('#item-list').append(`
+                        <div class="item">
+                            <strong>${item.title}</strong><br>
+                            <em>by ${item.author} (${item.year})</em><br>
+                            <p>${item.description}</p>
+                        </div>
+                    `);
+                });
+            }
+
+            // Initial fetch
+            fetchItems(currentPage);
+
+            // Load more button click event
+            $('#load-more').on('click', function() {
+                currentPage++;
+                fetchItems(currentPage);
+            });
+        });
+    </script>
+</body>
+</html>

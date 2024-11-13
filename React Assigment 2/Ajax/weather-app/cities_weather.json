@@ -1,0 +1,164 @@
+[
+    {
+       "coord": { "lon": 72.8333, "lat": 21.1702 },
+       "weather": [
+          { "id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03d" }
+       ],
+       "main": {
+          "temp": 305.15, "feels_like": 310.15, "temp_min": 303.15, "temp_max": 307.15,
+          "pressure": 1010, "humidity": 65
+       },
+       "wind": { "speed": 3.2, "deg": 250 },
+       "clouds": { "all": 40 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1255364,
+       "name": "Surat",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 72.8333, "lat": 18.9667 },
+       "weather": [
+          { "id": 800, "main": "Clear", "description": "clear sky", "icon": "01d" }
+       ],
+       "main": {
+          "temp": 300.15, "feels_like": 302.35, "temp_min": 299.15, "temp_max": 302.15,
+          "pressure": 1012, "humidity": 70
+       },
+       "wind": { "speed": 3.6, "deg": 310 },
+       "clouds": { "all": 5 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1275339,
+       "name": "Mumbai",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 72.5714, "lat": 23.0225 },
+       "weather": [
+          { "id": 500, "main": "Rain", "description": "light rain", "icon": "10d" }
+       ],
+       "main": {
+          "temp": 302.15, "feels_like": 305.15, "temp_min": 301.15, "temp_max": 304.15,
+          "pressure": 1008, "humidity": 75
+       },
+       "wind": { "speed": 2.5, "deg": 180 },
+       "clouds": { "all": 60 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1279233,
+       "name": "Ahmedabad",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 77.5937, "lat": 12.9716 },
+       "weather": [
+          { "id": 803, "main": "Clouds", "description": "broken clouds", "icon": "04d" }
+       ],
+       "main": {
+          "temp": 295.15, "feels_like": 297.15, "temp_min": 293.15, "temp_max": 298.15,
+          "pressure": 1014, "humidity": 82
+       },
+       "wind": { "speed": 4.1, "deg": 190 },
+       "clouds": { "all": 75 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1277333,
+       "name": "Bangalore",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 80.2785, "lat": 13.0878 },
+       "weather": [
+          { "id": 801, "main": "Clouds", "description": "few clouds", "icon": "02d" }
+       ],
+       "main": {
+          "temp": 303.15, "feels_like": 308.15, "temp_min": 302.15, "temp_max": 305.15,
+          "pressure": 1009, "humidity": 72
+       },
+       "wind": { "speed": 5.0, "deg": 200 },
+       "clouds": { "all": 20 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1264527,
+       "name": "Chennai",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 77.209, "lat": 28.6139 },
+       "weather": [
+          { "id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03d" }
+       ],
+       "main": {
+          "temp": 304.15, "feels_like": 309.15, "temp_min": 302.15, "temp_max": 306.15,
+          "pressure": 1007, "humidity": 68
+       },
+       "wind": { "speed": 3.7, "deg": 150 },
+       "clouds": { "all": 40 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1273294,
+       "name": "Delhi",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 88.3639, "lat": 22.5726 },
+       "weather": [
+          { "id": 500, "main": "Rain", "description": "light rain", "icon": "10d" }
+       ],
+       "main": {
+          "temp": 298.15, "feels_like": 302.15, "temp_min": 297.15, "temp_max": 300.15,
+          "pressure": 1006, "humidity": 88
+       },
+       "wind": { "speed": 4.1, "deg": 150 },
+       "clouds": { "all": 75 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1275004,
+       "name": "Kolkata",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 73.8567, "lat": 18.5204 },
+       "weather": [
+          { "id": 801, "main": "Clouds", "description": "few clouds", "icon": "02d" }
+       ],
+       "main": {
+          "temp": 299.15, "feels_like": 302.15, "temp_min": 298.15, "temp_max": 301.15,
+          "pressure": 1011, "humidity": 60
+       },
+       "wind": { "speed": 2.0, "deg": 160 },
+       "clouds": { "all": 15 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1259229,
+       "name": "Pune",
+       "cod": 200
+    },
+    {
+       "coord": { "lon": 77.1025, "lat": 28.7041 },
+       "weather": [
+          { "id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03d" }
+       ],
+       "main": {
+          "temp": 303.15, "feels_like": 308.15, "temp_min": 301.15, "temp_max": 305.15,
+          "pressure": 1005, "humidity": 65
+       },
+       "wind": { "speed": 3.0, "deg": 120 },
+       "clouds": { "all": 30 },
+       "dt": 1726660758,
+       "sys": { "country": "IN" },
+       "timezone": 19800,
+       "id": 1273293,
+       "name": "New Delhi",
+       "cod": 200
+    }
+] 

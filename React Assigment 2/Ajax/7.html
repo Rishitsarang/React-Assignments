@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height to center vertically */
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%; /* Ensure it uses full width */
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* To position suggestions properly */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px; /* Add some space below the heading */
+        }
+
+        #search {
+            width: 100%; /* Full width input */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in element's total width */
+        }
+
+        .suggestions {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            position: absolute;
+            width: 95%; /* Match the width of the input */
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Author Search</h1>
+        <input type="text" id="search" placeholder="Search for an author...">
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <script src="./jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search').on('keyup', function() {
+                let query = $(this).val();
+
+                if (query.length > 0) {
+                    $.ajax({
+                        url: 'books.json', // URL of your JSON file
+                        dataType: 'json',
+                        success: function(data) {
+                            let suggestions = [];
+                            // Access the books array in the JSON data
+                            data.books.forEach(book => {
+                                if (book.author.toLowerCase().includes(query.toLowerCase())) {
+                                    suggestions.push(book.author);
+                                }
+                            });
+
+                            // Display suggestions
+                            displaySuggestions(suggestions);
+                        },
+                        error: function() {
+                            console.error('Failed to fetch data from books.json');
+                        }
+                    });
+                } else {
+                    $('#suggestions').empty().hide();
+                }
+            });
+
+            function displaySuggestions(suggestions) {
+                $('#suggestions').empty();
+                if (suggestions.length > 0) {
+                    suggestions.forEach(suggestion => {
+                        $('#suggestions').append(`<div class="suggestion-item">${suggestion}</div>`);
+                    });
+                    $('#suggestions').show();
+                } else {
+                    $('#suggestions').hide();
+                }
+
+                // Handle suggestion click
+                $('.suggestion-item').on('click', function() {
+                    $('#search').val($(this).text());
+                    $('#suggestions').empty().hide();
+                });
+            }
+
+            // Hide suggestions when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#search').length) {
+                    $('#suggestions').empty().hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

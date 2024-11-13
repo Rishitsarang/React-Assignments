@@ -1,0 +1,84 @@
+{
+    "books": [
+        {
+            "id": 1,
+            "title": "The Complete Reference Java",
+            "author": "Herbert Schildt",
+            "year": 2020,
+            "genre": "Programming",
+            "description": "A comprehensive guide to Java programming covering all the core concepts and advanced features."
+        },
+        {
+            "id": 2,
+            "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+            "author": "Robert C. Martin",
+            "year": 2009,
+            "genre": "Software Engineering",
+            "description": "This book presents principles and best practices for writing clean, maintainable code."
+        },
+        {
+            "id": 3,
+            "title": "The Design of Everyday Things",
+            "author": "Don Norman",
+            "year": 2013,
+            "genre": "User Experience",
+            "description": "An exploration of how design serves as the communication between object and user, emphasizing the importance of usability."
+        },
+        {
+            "id": 4,
+            "title": "Introduction to Machine Learning",
+            "author": "Ethem Alpaydin",
+            "year": 2014,
+            "genre": "Machine Learning",
+            "description": "A clear introduction to the key concepts and techniques in machine learning."
+        },
+        {
+            "id": 5,
+            "title": "Data Science for Business",
+            "author": "Foster Provost and Tom Fawcett",
+            "year": 2013,
+            "genre": "Data Science",
+            "description": "A practical guide to understanding data science and its applications in business contexts."
+        },
+        {
+            "id": 6,
+            "title": "The Pragmatic Programmer: Your Journey To Mastery",
+            "author": "Andrew Hunt and David Thomas",
+            "year": 2019,
+            "genre": "Software Development",
+            "description": "A guide to becoming a better programmer by following pragmatic principles and practices."
+        },
+        {
+            "id": 7,
+            "title": "Deep Learning",
+            "author": "Ian Goodfellow, Yoshua Bengio, and Aaron Courville",
+            "year": 2016,
+            "genre": "Deep Learning",
+            "description": "An in-depth introduction to deep learning concepts, techniques, and applications."
+        },
+        {
+            "id": 8,
+            "title": "Artificial Intelligence: A Guide to Intelligent Systems",
+            "author": "Michael Negnevitsky",
+            "year": 2005,
+            "genre": "Artificial Intelligence",
+            "description": "A comprehensive introduction to the concepts and techniques of artificial intelligence."
+        },
+        {
+            "id": 9,
+            "title": "Python for Data Analysis",
+            "author": "Wes McKinney",
+            "year": 2017,
+            "genre": "Data Analysis",
+            "description": "A practical introduction to data analysis using the Python programming language."
+        },
+        {
+            "id": 10,
+            "title": "Introduction to the Theory of Computation",
+            "author": "Michael Sipser",
+            "year": 2012,
+            "genre": "Theoretical Computer Science",
+            "description": "An introduction to the fundamental concepts of computation theory."
+        }
+    ]
+}

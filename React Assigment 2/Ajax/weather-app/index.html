@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter the City name" spellcheck="false">
+            <button><img src="images/search.png" alt="search"></button>
+        </div>
+        <div class="weather">
+            <img src="images/rain.png" alt="weather-icon" class="weather-icon">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">Surat</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="images/humidity.png" alt="humidity-icon">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="images/wind.png" alt="wind-icon">
+                    <div>
+                        <p class="wind">15 km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    //Ajax Code
+     
+        <script>
+            $(document).ready(function() {
+                // Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
+                const apiKey = '50e878f2d5ea8daa810816e981a18a1c';
+                
+                $('button').click(function() {
+                const city = $('input').val();
+                if (city) {
+                    $.ajax({
+                        url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            console.log(data);
+                            $('.temp').text(`${data.main.temp}°C`);
+                            $('.city').text(data.name);
+                            $('.humidity').text(`${data.main.humidity}%`);
+                            $('.wind').text(`${data.wind.speed} km/h`);
+    
+                            // Update weather icon based on weather condition
+                            const weatherIcon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                            $('.weather-icon').attr('src', weatherIcon);
+                        },
+                        error: function() {
+                            alert('City not found, please try again');
+                        }
+                    });
+                } else {
+                    alert('Please enter a city name');
+                }
+            });
+        });
+    </script>
+
+    <!-- <script src="./weather.js"></script> -->
+    
+</body>
+</html>

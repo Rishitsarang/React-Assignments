@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State and City Dropdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Select State and City</h2>
+    <form id="locationForm">
+        <label for="states">Select State:</label>
+        <select id="states">
+            <option value="" disabled selected>Select a state</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="tamilnadu">Tamil Nadu</option>
+            <option value="gujarat">Gujarat</option>
+            <option value="rajasthan">Rajasthan</option>
+            <option value="uttarpradesh">Uttar Pradesh</option>
+            <option value="westbengal">West Bengal</option>
+            <option value="kerala">Kerala</option>
+            <option value="madhyapradesh">Madhya Pradesh</option>
+            <option value="bihar">Bihar</option>
+            <option value="punjab">Punjab</option>
+            <option value="haryana">Haryana</option>
+            
+        </select>
+
+        <label for="cities">Select City:</label>
+        <select id="cities" disabled>
+            <option value="" disabled selected>Select a city</option>
+        </select>
+    </form>
+</div>
+
+<script src="./jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Object containing states and their cities
+        const stateCities = {
+            maharashtra: ['Mumbai', 'Pune', 'Nagpur', 'Nashik'],
+            karnataka: ['Bengaluru', 'Mysuru', 'Mangaluru', 'Hubballi'],
+            tamilnadu: ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli'],
+            gujarat: ['Ahmedabad', 'Surat', 'Vadodara', 'Rajkot'],
+            rajasthan: ['Jaipur', 'Jodhpur', 'Udaipur', 'Ajmer'],
+            uttarpradesh: ['Lucknow', 'Kanpur', 'Varanasi', 'Agra'],
+            westbengal: ['Kolkata', 'Darjeeling', 'Howrah', 'Asansol'],
+            kerala: ['Thiruvananthapuram', 'Kochi', 'Kozhikode', 'Thrissur'],
+            madhyapradesh: ['Bhopal', 'Indore', 'Gwalior', 'Jabalpur'],
+            bihar: ['Patna', 'Gaya', 'Bhagalpur', 'Muzaffarpur'],
+            punjab: ['Chandigarh', 'Amritsar', 'Ludhiana', 'Jalandhar'],
+            haryana: ['Gurgaon', 'Faridabad', 'Panipat', 'Hisar']
+        };
+        
+        // When a state is selected, populate the cities dropdown
+        $('#states').change(function() {
+            const selectedState = $(this).val(); // Get the selected state
+            const citiesDropdown = $('#cities');
+            citiesDropdown.empty(); // Clear the current city options
+            citiesDropdown.append('<option value="" disabled selected>Select a city</option>'); // Add default option
+
+            if (selectedState) {
+                // Enable the city dropdown and populate it
+                citiesDropdown.prop('disabled', false);
+                const cities = stateCities[selectedState]; // Get cities for the selected state
+                $.each(cities, function(index, city) {
+                    citiesDropdown.append(`<option value="${city.toLowerCase()}">${city}</option>`);
+                });
+            } else {
+                citiesDropdown.prop('disabled', true); // Disable city dropdown if no state is selected
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

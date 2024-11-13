@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #chat-box {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            margin: 5px 0;
+        }
+
+        .typing-indicator {
+            font-style: italic;
+            color: #888;
+            margin: 5px 0;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Chat Application</h1>
+        <div id="chat-box"></div>
+        <input type="text" id="message" placeholder="Type your message..." autocomplete="off">
+        <button id="send-btn">Send</button>
+        <div id="typing-indicator" class="typing-indicator" style="display: none;">User is typing...</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let messages = []; // Array to hold messages
+        let botResponseDelay = 1000; // Delay for bot response (in milliseconds)
+
+        // Function to load messages
+        function loadMessages() {
+            $('#chat-box').empty(); // Clear the chat box
+            messages.forEach(function(message) {
+                $('#chat-box').append('<div class="message"><strong>' + message.user + ':</strong> ' + message.text + '</div>');
+            });
+            $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight); // Scroll to the bottom
+        }
+
+        // Function to show typing indicator
+        function showTypingIndicator() {
+            $('#typing-indicator').show();
+        }
+
+        // Function to hide typing indicator
+        function hideTypingIndicator() {
+            $('#typing-indicator').hide();
+        }
+
+        // Show typing indicator when typing
+        $('#message').on('input', function() {
+            showTypingIndicator();
+            clearTimeout($.data(this, 'timer'));
+            $.data(this, 'timer', setTimeout(hideTypingIndicator, 1000)); // Hide after 1 second of inactivity
+        });
+
+        // Send message on button click
+        $('#send-btn').on('click', function() {
+            const messageText = $('#message').val();
+            if (messageText) {
+                messages.push({ user: 'User', text: messageText }); // Simulate message storage
+                $('#message').val(''); // Clear input field
+                hideTypingIndicator(); // Hide typing indicator
+                loadMessages(); // Reload messages
+
+                // Simulate bot response after user reply
+                setTimeout(function() {
+                    const randomResponses = ['Hello!', 'How are you?', 'What\'s up?', 'Good day!', 'Nice to meet you!'];
+                    const randomIndex = Math.floor(Math.random() * randomResponses.length);
+                    messages.push({ user: 'Bot', text: randomResponses[randomIndex] }); // Simulate bot message
+                    loadMessages(); // Reload messages
+                }, botResponseDelay);
+            }
+        });
+
+        // Optionally, send message on Enter key press
+        $('#message').on('keypress', function(e) {
+            if (e.which == 13) { // Enter key pressed
+                $('#send-btn').click();
+            }
+        });
+    </script>
+</body>
+</html>

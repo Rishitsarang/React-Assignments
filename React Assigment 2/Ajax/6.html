@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>List of Books</h2>
+        <table id="bookTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>Genre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be populated here -->
+            </tbody>
+        </table>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Local JSON file URL
+            const apiUrl = 'books.json';
+
+            // Function to populate the table with book data
+            function populateTable(data) {
+                const tbody = $('#bookTable tbody');
+                tbody.empty(); // Clear existing rows
+
+                data.books.forEach(book => {
+                    tbody.append(`
+                        <tr>
+                            <td>${book.title}</td>
+                            <td>${book.author}</td>
+                            <td>${book.year}</td>
+                            <td>${book.genre}</td>
+                        </tr>
+                    `);
+                });
+            }
+
+            // AJAX request to get book data from the local JSON file
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    populateTable(data); // Populate table with book data
+                },
+                error: function () {
+                    $('#errorMessage').text('Unable to retrieve book data.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

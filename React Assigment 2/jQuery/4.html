@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Image Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .slider-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .slider-images {
+            display: flex;
+            width: calc(600px * 4); 
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        .slider-images img {
+            width: 600px; 
+            height: 100%; 
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-container">
+    <div class="slider-images">
+        <img src="./photo/image1.jpg" alt="Image 1">
+        <img src="./photo/image2.jpg" alt="Image 2">
+        <img src="./photo/image3.jpg" alt="Image 3">
+        <img src="./photo/image4.jpg" alt="Image 4">
+    </div>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+</div>
+
+<script src="./jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let currentIndex = 0;
+        const images = $('.slider-images img');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            const offset = -index * 600; // 600 is the width of each image/slide
+            $('.slider-images').css('transform', `translateX(${offset}px)`);
+        }
+
+        $('.next').click(function() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        });
+
+        $('.prev').click(function() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        });
+    });
+</script>
+
+</body>
+</html>
